@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"
+		/>
+		<style type="text/css">
+			span {
+				padding: 10px 20px;
+				margin: 8px;
+				background-color: gray;
+				display: inline-block;
+			}
+			span::after {
+				content: '-' attr( data-name) '( )';
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>UICityList</h1>
+			<mark>
+				使用前请详细阅读 文档 使用规则
+			</mark>
+		</header>
+		<span tapmode onclick="fnOpen()" data-name="open"></span>
+		<span tapmode onclick="fnClose()" data-name="close"></span>
+		<span tapmode onclick="fnShow()" data-name="show"></span>
+		<span tapmode onclick="fnHide()" data-name="hide"></span>
+	</body>
+</html>
+<script type="text/javascript">
+	var UICityList;
+	apiready = function() {
+		UICityList = api.require('UICityList');
+		api.setStatusBarStyle({
+			color : '#2390ce'
+		});
+	};
+	function fnClose() {
+		UICityList.close();
+	}
+
+	function fnShow() {
+		UICityList.show();
+	}
+
+	function fnHide() {
+		UICityList.hide();
+	}
+
+	function fnOpen() {
+		UICityList.open({
+			rect : {
+				x : 15,
+				y : document.querySelector('html').offsetHeight,
+				w : api.winWidth - 30,
+				h : api.winHeight - document.querySelector('html').offsetHeight - 15
+			},
+			resource : 'widget://res/UICityList.json',
+			styles : {
+				searchBar : {
+					bgColor : '#7AC5CD',
+					cancColor : '#E3E3E3'
+				},
+				location : {
+					color : '#7AC5CD',
+				},
+				sectionTitle : {
+					bgColor : '#7AC5CD',
+				},
+				item : {
+					bgColor : '#7AC5CD',
+				},
+				indicator : {
+					bgColor : '#7AC5CD',
+				}
+			},
+			currentCity : '北京',
+		}, function(ret, err) {
+			if (ret) {
+				alert(JSON.stringify(ret));
+			} else {
+				alert(JSON.stringify(err));
+			}
+		});
+	}
+</script>
