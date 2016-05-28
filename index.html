@@ -45,12 +45,18 @@
 	}
 
 	function fnOpen() {
+		alert( JSON.stringify( {
+				x : 15,
+				y : api.winHeight / 3 + 7,
+				w : api.winWidth - 30,
+				h : api.winHeight  - 10
+			} ))
 		UICityList.open({
 			rect : {
 				x : 15,
-				y : document.querySelector('html').offsetHeight,
+				y : api.winHeight / 3 + 7,
 				w : api.winWidth - 30,
-				h : api.winHeight - document.querySelector('html').offsetHeight - 15
+				h : api.winHeight  - 10
 			},
 			resource : 'widget://res/UICityList.json',
 			styles : {
